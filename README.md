@@ -1,59 +1,39 @@
-# IocAngularXdiceYasirElrahali
+# Xdice
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+## Autor/a
+Yasir El Rahali
 
-## Development server
+## Descripció
+Xdice (Exploding Dice) es una ficha interactiva para juegos de rol de mesa, pensada para Web, móvil y tablet. La idea es que sea una alternativa abierta y gratuita a los gestores de fichas actuales. Más adelante tendrá modo campaña y modo solo, y exportar e importar la ficha en JSON.
 
-To start a local development server, run:
+## Versions utilitzades
+- Node.js: 24.21.0
+- npm: 11.19.0
+- Angular CLI: 22.2.1
+- Angular: 22
+- Git: 2.50.1
 
-```bash
-ng serve
-```
+## Com crear i executar el projecte
+Creación:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+    ng new ioc-angular-xdice-yasir-elrahali --routing --style=scss --ssr=false --standalone=true --file-name-style-guide=2016 --skip-git=true --package-manager=npm
 
-## Code scaffolding
+Instalar dependencias y ejecutar:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+    npm install
+    ng serve
 
-```bash
-ng generate component component-name
-```
+La app queda en http://localhost:4200
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Estat de l'EAC1
+EAC1 completada:
 
-```bash
-ng generate --help
-```
+- Entorno verificado: Node.js, npm, Angular CLI y Git, con npm como gestor por defecto.
+- Proyecto Angular creado con routing, SCSS, SSR desactivado, standalone y nombres `app.component.*`.
+- Carpetas `components`, `services`, `models` y `pages` en `src/app`, cada una con su `.gitkeep`.
+- Repositorio público con las ramas `main`, `ra1-setup`, `ra2-components`, `ra3-serveis` y `ra4-navegacio` publicadas. Los cambios de esta EAC están en `ra1-setup`.
+- Página inicial personalizada con título, párrafo, tarjeta, `aside` y el texto "Projecte base llest".
+- `ng serve` funciona y el hot reload está comprobado.
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Enllaç del repositori
+https://github.com/Shtnxl/ioc-angular-xdice-yasir-elrahali
