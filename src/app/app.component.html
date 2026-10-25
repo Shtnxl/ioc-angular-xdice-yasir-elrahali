@@ -12,6 +12,11 @@
       </ul>
       <p>Projecte base llest</p>
     </div>
+    <app-filtros-personajes />
+    <app-personaje-lista
+      [personajes]="personajes"
+      [idSeleccionado]="seleccionado?.id ?? null"
+      (seleccionar)="onSeleccionar($event)" />
   </section>
 
   <aside class="nota">

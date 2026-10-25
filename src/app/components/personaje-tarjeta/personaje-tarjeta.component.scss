@@ -1,0 +1,10 @@
+.tarjeta {
+  border: 1px solid #c8d0d8;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.tarjeta.seleccionada {
+  border-color: #3730a3;
+  background: #eef2ff;
+}

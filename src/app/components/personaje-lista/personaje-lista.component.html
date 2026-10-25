@@ -1,0 +1,8 @@
+<section class="lista">
+  @for (p of personajes; track p.id) {
+    <app-personaje-tarjeta
+      [personaje]="p"
+      [seleccionada]="p.id === idSeleccionado"
+      (seleccionar)="seleccionar.emit($event)" />
+  }
+</section>

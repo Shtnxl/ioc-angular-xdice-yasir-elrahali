@@ -1,0 +1,6 @@
+<article class="tarjeta" [class.seleccionada]="seleccionada">
+  <h3>{{ personaje.nombre }}</h3>
+  <app-etiqueta-clase [clase]="personaje.clase" />
+  <p>Nivel {{ personaje.nivel }}</p>
+  <button type="button" (click)="onClick()">Ver detalle</button>
+</article>
