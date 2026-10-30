@@ -40,3 +40,27 @@
   border: 1px dashed #888;
   border-radius: 8px;
 }
+
+.salto {
+  position: absolute;
+  left: -9999px;
+}
+
+.salto:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 2px solid #1d4ed8;
+  z-index: 10;
+}
+
+@media (max-width: 700px) {
+  .contenedor {
+    flex-direction: column;
+  }
+
+  .detalle {
+    align-self: stretch;
+  }
+}

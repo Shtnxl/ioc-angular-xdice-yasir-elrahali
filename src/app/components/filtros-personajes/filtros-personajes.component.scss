@@ -2,3 +2,15 @@
   color: #8a1f11;
   margin: 0.25rem 0 0;
 }
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
