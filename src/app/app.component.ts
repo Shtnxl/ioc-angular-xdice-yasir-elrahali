@@ -5,9 +5,10 @@ import { Personaje } from './models/personaje.model';
 import { Filtros } from './models/filtros.model';
 import { PersonajeLista } from './components/personaje-lista/personaje-lista.component';
 import { FiltrosPersonajes } from './components/filtros-personajes/filtros-personajes.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  imports: [RouterOutlet, PersonajeLista, FiltrosPersonajes],
+  imports: [RouterOutlet, PersonajeLista, FiltrosPersonajes, DatePipe],
   selector: 'app-root',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',

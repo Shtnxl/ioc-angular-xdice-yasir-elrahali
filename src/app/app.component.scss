@@ -21,11 +21,22 @@
   background: #f7f7f7;
 }
 
-.nota {
+.detalle {
   flex: 1;
   align-self: flex-start;
   padding: 1rem;
-  border-left: 4px solid #888;
-  background: #eee;
-  font-style: italic;
+  border: 1px solid #c8d0d8;
+  border-radius: 8px;
+  background: #f7f7f7;
+}
+
+.contador {
+  margin: 0;
+  font-weight: 600;
+}
+
+.vacio {
+  padding: 1rem;
+  border: 1px dashed #888;
+  border-radius: 8px;
 }

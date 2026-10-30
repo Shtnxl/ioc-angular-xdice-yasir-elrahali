@@ -17,14 +17,29 @@
       [clases]="clases"
       (aplicar)="onApply($event)"
       (restablecer)="onReset()" />
-    <app-personaje-lista
-      [personajes]="personajesFiltrados"
-      [idSeleccionado]="seleccionado?.id ?? null"
-      (seleccionar)="onSeleccionar($event)" />
+
+      <p class="contador" role="status">
+        Mostrando {{ personajesFiltrados.length }} de {{ personajes.length }} personajes
+      </p>
+    @if (personajesFiltrados.length > 0) {
+      <app-personaje-lista
+        [personajes]="personajesFiltrados"
+        [idSeleccionado]="seleccionado?.id ?? null"
+        (seleccionar)="onSeleccionar($event)" />
+    } @else {
+       <p class="vacio" role="status">No hay ningún personaje que coincida con los filtros.</p>
+    }
   </section>
 
-  <aside class="nota">
-    Hot reload funcionando
+ <aside class="detalle" aria-label="Detalle del personaje">
+  @if (seleccionado) {
+    <h2>{{ seleccionado.nombre }}</h2>
+    <p>{{ seleccionado.clase }} · {{ seleccionado.subclase }} · Nivel {{ seleccionado.nivel }}</p>
+    <p>{{ seleccionado.descripcion }}</p>
+    <p>Creado el {{ seleccionado.fechaCreacion | date: 'dd/MM/yyyy' }}</p>
+  } @else {
+    <p>Selecciona un personaje para ver su detalle.</p>
+  }
   </aside>
 </main>
 
