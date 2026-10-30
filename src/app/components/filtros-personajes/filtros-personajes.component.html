@@ -1,4 +1,29 @@
+<form #f="ngForm" class="filtros" (ngSubmit)="onApply()">
+  <div class="campo">
+    <label for="texto">Buscar por nombre</label>
+    <input id="texto" name="texto" type="text"
+           [(ngModel)]="texto" required minlength="3" #textoCtrl="ngModel" />
+    @if (textoCtrl.invalid && (textoCtrl.dirty || textoCtrl.touched)) {
+      <p class="error" role="alert">
+        @if (textoCtrl.errors?.['required']) {
+          Escribe algo para buscar.
+        } @else {
+          Escribe al menos 3 caracteres.
+        }
+      </p>
+    }
+  </div>
 
-<section class="filtros">
-  <button type="button" (click)="restablecer.emit()">Restablecer</button>
-</section>
+  <div class="campo">
+    <label for="clase">Clase</label>
+    <select id="clase" name="clase" [(ngModel)]="clase">
+      <option value="">Todas</option>
+      @for (c of clases; track c) {
+        <option [value]="c">{{ c }}</option>
+      }
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="f.invalid">Aplicar</button>
+  <button type="button" (click)="onReset(f)">Restablecer</button>
+</form>

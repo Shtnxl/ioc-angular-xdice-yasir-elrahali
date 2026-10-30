@@ -1,7 +1,7 @@
 <main class="contenedor">
   <section class="principal">
     <h1>{{ appName }}</h1>
-    <p>Yasir El Rahali · Ficha interactiva para juegos de rol de mesa, pensada para móvil y tablet</p>
+    <p>Yasir El Rahali · Ficha interactiva para juegos de rol de mesa</p>
 
     <div class="tarjeta">
       <h2>Datos del proyecto</h2>
@@ -12,9 +12,13 @@
       </ul>
       <p>Projecte base llest</p>
     </div>
-    <app-filtros-personajes />
+
+    <app-filtros-personajes
+      [clases]="clases"
+      (aplicar)="onApply($event)"
+      (restablecer)="onReset()" />
     <app-personaje-lista
-      [personajes]="personajes"
+      [personajes]="personajesFiltrados"
       [idSeleccionado]="seleccionado?.id ?? null"
       (seleccionar)="onSeleccionar($event)" />
   </section>
