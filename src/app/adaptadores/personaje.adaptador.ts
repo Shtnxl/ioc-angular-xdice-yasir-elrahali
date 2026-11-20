@@ -27,7 +27,7 @@ export function adaptarPersonajeApi(api: PersonajeApi): Personaje {
     nombre: limpiarTexto(api.name),
     descripcion: limpiarTexto(api.description) || 'Sin descripción',
     clase: normalizarClase(api.class),
-    subclase: limpiarTexto(api.subclass),       
+    subclase: limpiarTexto(api.subclass) || undefined,
     nivel: numeroSeguro(api.level, 1),
     fechaCreacion:  (api.created_at ?? '').slice(0, 10),
     vivo: api.alive ?? true,
