@@ -16,7 +16,7 @@
     </div>
 
     <button type="button" (click)="onCrearEjemplo()">Crear personaje de ejemplo</button>
-    
+
     <app-filtros-personajes
       [clases]="clases()"
       (aplicar)="onApply($event)"
@@ -26,9 +26,11 @@
       @case ('cargando') {
         <p class="vacio" role="status">Cargando personajes…</p>
       }
-      @case ('error') {
-        <p class="vacio" role="alert">{{ error() }}</p>
+    @case ('error') {
+      <div class="banner-error" role="alert">
+        <p>{{ error() }}</p>
         <button type="button" (click)="onReintentar()">Reintentar</button>
+      </div>
       }
       @case ('exito') {
         <p class="contador" role="status">

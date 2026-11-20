@@ -64,3 +64,20 @@
     align-self: stretch;
   }
 }
+
+.banner-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #8a1f11;
+  border-radius: 8px;
+  background: #fdecea;
+  color: #8a1f11;
+
+  p {
+    margin: 0;
+  }
+}
