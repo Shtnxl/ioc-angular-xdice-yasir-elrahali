@@ -8,3 +8,9 @@ export interface Personaje {
     nivel: number;
     vivo?: boolean;
 }
+export interface NuevoPersonaje {
+  nombre: string;
+  descripcion: string;
+  clase: string;
+  nivel: number;
+}

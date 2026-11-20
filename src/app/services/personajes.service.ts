@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { EMPTY, Subject, catchError, map, switchMap, tap } from 'rxjs';
+import { EMPTY, Observable, Subject, catchError, map, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { adaptarPersonajesApi } from '../adaptadores/personaje.adaptador';
+import {
+  adaptarPersonajeApi,
+  adaptarPersonajesApi,
+  prepararPersonajeApi,
+} from '../adaptadores/personaje.adaptador';
 import { Filtros } from '../models/filtros.model';
 import { PersonajeApi } from '../models/personaje-api.model';
-import { Personaje } from '../models/personaje.model';
+import { NuevoPersonaje, Personaje } from '../models/personaje.model';
 
 export type EstadoCarga = 'inicial' | 'cargando' | 'exito' | 'error';
 
@@ -74,5 +78,12 @@ export class PersonajesService {
 
   reintentar(): void {
     this.buscar(this.ultimaConsulta);
+  }
+
+  crear(nuevo: NuevoPersonaje): Observable<Personaje> {
+    return this.http.post<PersonajeApi>(this.url, prepararPersonajeApi(nuevo)).pipe(
+      map(adaptarPersonajeApi),
+      tap(() => this.reintentar())
+    );
   }
 }

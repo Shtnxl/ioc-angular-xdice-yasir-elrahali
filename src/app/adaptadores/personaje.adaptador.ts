@@ -1,4 +1,4 @@
-import { Personaje } from '../models/personaje.model';
+import { NuevoPersonaje, Personaje } from '../models/personaje.model';
 import { PersonajeApi } from '../models/personaje-api.model';
 
 const CLASES: Record<string, string> = {
@@ -36,4 +36,18 @@ export function adaptarPersonajeApi(api: PersonajeApi): Personaje {
 
 export function adaptarPersonajesApi(lista: PersonajeApi[]): Personaje[] {
   return lista.map(adaptarPersonajeApi);
+}
+
+export function prepararPersonajeApi(p: NuevoPersonaje): Omit<PersonajeApi, 'id'> {
+  const codigo =
+    Object.entries(CLASES).find(([, es]) => es === p.clase)?.[0] ?? p.clase.toLowerCase();
+  return {
+    name: p.nombre.trim(),
+    description: p.descripcion.trim(),
+    class: codigo,
+    subclass: null,
+    level: p.nivel,
+    created_at: new Date().toISOString(),
+    alive: true,
+  };
 }

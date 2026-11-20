@@ -45,4 +45,11 @@ export class App implements OnInit {
   onReintentar(): void {
     this.servicio.reintentar();
   }
+
+  onCrearEjemplo(): void {
+  this.servicio
+    .crear({ nombre: 'Personaje de prueba', descripcion: 'Creado con POST', clase: 'Mago', nivel: 1 })
+    .subscribe();
+}
+
 }
