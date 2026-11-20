@@ -86,4 +86,12 @@ export class PersonajesService {
       tap(() => this.reintentar())
     );
   }
+
+  hayResultados(texto: string): Observable<boolean> {
+  return this.http.get<PersonajeApi[]>(this.url).pipe(
+    map(adaptarPersonajesApi),
+    map((lista) => filtrar(lista, { texto, clase: '' }).length > 0)
+  );
+}
+
 }

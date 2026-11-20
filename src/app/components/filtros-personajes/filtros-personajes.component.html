@@ -1,22 +1,31 @@
-<form #f="ngForm" class="filtros" (ngSubmit)="onApply()">
+<form [formGroup]="formulario" class="filtros" (ngSubmit)="onSubmit()">
   <div class="campo">
     <label for="texto">Buscar por nombre</label>
-    <input id="texto" name="texto" type="text"
-           [(ngModel)]="texto" required minlength="3" #textoCtrl="ngModel" />
-    @if (textoCtrl.invalid && (textoCtrl.dirty || textoCtrl.touched)) {
-      <p class="error" role="alert">
-        @if (textoCtrl.errors?.['required']) {
-          Escribe algo para buscar.
-        } @else {
-          Escribe al menos 3 caracteres.
+    <input
+      id="texto"
+      type="text"
+      formControlName="texto"
+      autocomplete="off"
+      aria-describedby="texto-mensajes"
+      [attr.aria-invalid]="texto.invalid && (texto.touched || texto.dirty)" />
+    <div id="texto-mensajes">
+      @if (texto.pending) {
+        <p role="status">Comprobando…</p>
+      }
+      @if (texto.touched || texto.dirty) {
+        @if (texto.errors?.['longitudMinima']) {
+          <p class="error" role="alert">Escribe al menos 3 caracteres.</p>
         }
-      </p>
-    }
+        @if (texto.errors?.['sinResultados']) {
+          <p class="error" role="alert">No hay personajes que coincidan con «{{ texto.value }}».</p>
+        }
+      }
+    </div>
   </div>
 
   <div class="campo">
     <label for="clase">Clase</label>
-    <select id="clase" name="clase" [(ngModel)]="clase">
+    <select id="clase" formControlName="clase">
       <option value="">Todas</option>
       @for (c of clases; track c) {
         <option [value]="c">{{ c }}</option>
@@ -24,6 +33,19 @@
     </select>
   </div>
 
-  <button type="submit" [disabled]="f.invalid">Aplicar</button>
-  <button type="button" (click)="onReset(f)">Restablecer</button>
+  <button type="submit" [disabled]="formulario.invalid || formulario.pending">Buscar</button>
+  <button type="button" (click)="onReset()">Limpiar</button>
 </form>
+
+@if (historial.terminos().length > 0) {
+  <section class="historial" aria-label="Historial de búsquedas">
+    <h3>Búsquedas recientes</h3>
+    <ul>
+      @for (t of historial.terminos(); track $index) {
+        <li>
+          <button type="button" (click)="usarHistorial(t)">{{ t }}</button>
+        </li>
+      }
+    </ul>
+  </section>
+}
