@@ -16,32 +16,43 @@
     </div>
 
     <app-filtros-personajes
-      [clases]="clases"
+      [clases]="clases()"
       (aplicar)="onApply($event)"
       (restablecer)="onReset()" />
 
-      <p class="contador" role="status">
-        Mostrando {{ personajesFiltrados.length }} de {{ personajes.length }} personajes
-      </p>
-    @if (personajesFiltrados.length > 0) {
-      <app-personaje-lista
-        [personajes]="personajesFiltrados"
-        [idSeleccionado]="seleccionado?.id ?? null"
-        (seleccionar)="onSeleccionar($event)" />
-    } @else {
-       <p class="vacio" role="status">No hay ningún personaje que coincida con los filtros.</p>
+    @switch (estado()) {
+      @case ('cargando') {
+        <p class="vacio" role="status">Cargando personajes…</p>
+      }
+      @case ('error') {
+        <p class="vacio" role="alert">{{ error() }}</p>
+        <button type="button" (click)="onReintentar()">Reintentar</button>
+      }
+      @case ('exito') {
+        <p class="contador" role="status">
+          Mostrando {{ personajes().length }} de {{ total() }} personajes
+        </p>
+        @if (personajes().length > 0) {
+          <app-personaje-lista
+            [personajes]="personajes()"
+            [idSeleccionado]="seleccionado()?.id ?? null"
+            (seleccionar)="onSeleccionar($event)" />
+        } @else {
+          <p class="vacio" role="status">No hay ningún personaje que coincida con los filtros.</p>
+        }
+      }
     }
   </section>
 
- <aside class="detalle" aria-label="Detalle del personaje">
-  @if (seleccionado) {
-    <h2>{{ seleccionado.nombre }}</h2>
-    <p>{{ seleccionado.clase }} · {{ seleccionado.subclase }} · Nivel {{ seleccionado.nivel }}</p>
-    <p>{{ seleccionado.descripcion }}</p>
-    <p>Creado el {{ seleccionado.fechaCreacion | date: 'dd/MM/yyyy' }}</p>
-  } @else {
-    <p>Selecciona un personaje para ver su detalle.</p>
-  }
+  <aside class="detalle" aria-label="Detalle del personaje">
+    @if (seleccionado(); as sel) {
+      <h2>{{ sel.nombre }}</h2>
+      <p>{{ sel.clase }} · {{ sel.subclase }} · Nivel {{ sel.nivel }}</p>
+      <p>{{ sel.descripcion }}</p>
+      <p>Creado el {{ sel.fechaCreacion | date: 'dd/MM/yyyy' }}</p>
+    } @else {
+      <p>Selecciona un personaje para ver su detalle.</p>
+    }
   </aside>
 </main>
 
