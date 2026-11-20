@@ -3,7 +3,7 @@ import { PersonajeTarjeta } from './personaje-tarjeta.component';
 import { Personaje } from '../../models/personaje.model';
 
 const PERSONAJE_PRUEBA: Personaje = {
-  id: 1,
+  id: '1',
   nombre: 'Prueba',
   descripcion: 'Personaje de prueba',
   clase: 'Mago',

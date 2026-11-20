@@ -10,6 +10,6 @@ import { PersonajeTarjeta } from '../personaje-tarjeta/personaje-tarjeta.compone
 })
 export class PersonajeLista {
   @Input({ required: true }) personajes!: Personaje[];
-  @Input() idSeleccionado: number | null = null;
+  @Input() idSeleccionado: string | null = null;
   @Output() seleccionar = new EventEmitter<Personaje>();
 }

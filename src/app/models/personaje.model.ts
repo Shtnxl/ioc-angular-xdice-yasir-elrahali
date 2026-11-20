@@ -1,5 +1,5 @@
 export interface Personaje {
-    id: number;
+    id: string;
     fechaCreacion: string;
     nombre: string;
     descripcion: string;
